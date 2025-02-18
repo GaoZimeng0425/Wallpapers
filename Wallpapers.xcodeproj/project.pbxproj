@@ -16,11 +16,9 @@
 		453A466D2AB5B61D008D3136 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453A466C2AB5B61D008D3136 /* Loading.swift */; };
 		453BA1462AB055D400095A64 /* Aligment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453BA1452AB055D400095A64 /* Aligment.swift */; };
 		453BA1482AB098B100095A64 /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453BA1472AB098B100095A64 /* TextExtension.swift */; };
-		456E37FB2AB2F108002EF433 /* SwiftUIRouter in Frameworks */ = {isa = PBXBuildFile; productRef = 456E37FA2AB2F108002EF433 /* SwiftUIRouter */; };
 		457C578C2AB01B4E004F867F /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457C578B2AB01B4E004F867F /* ImageType.swift */; };
 		458E5C032AB83C9900D19CA7 /* ChicagoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5C022AB83C9900D19CA7 /* ChicagoAPI.swift */; };
 		458E5C072AB8557E00D19CA7 /* ChicagoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5C062AB8557E00D19CA7 /* ChicagoListView.swift */; };
-		458E5C0A2AB88C4F00D19CA7 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 458E5C092AB88C4F00D19CA7 /* MarkdownUI */; };
 		458E5C0C2AB892AD00D19CA7 /* Civitai.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5C0B2AB892AD00D19CA7 /* Civitai.swift */; };
 		458E5C0E2AB8B52200D19CA7 /* Harvard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458E5C0D2AB8B52200D19CA7 /* Harvard.swift */; };
 		459212EB2A99C18900C0757E /* WallpapersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459212EA2A99C18900C0757E /* WallpapersApp.swift */; };
@@ -58,7 +56,10 @@
 		45C662C42AC3FEA000810E7C /* Pasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C662C32AC3FEA000810E7C /* Pasteboard.swift */; };
 		45EA940C2ABD9C5C00A08CBE /* readme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EA940B2ABD9C5C00A08CBE /* readme.swift */; };
 		45FB3B482AA7626300F3CB99 /* PlainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FB3B472AA7626300F3CB99 /* PlainButton.swift */; };
+		BA5744912CF95EFA009796E2 /* image.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5744902CF95EFA009796E2 /* image.swift */; };
+		BAC084A52C846CBF005C4614 /* NeonGlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC084A42C846CBF005C4614 /* NeonGlow.swift */; };
 		BACDFACB2C59D983001D12D3 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACDFACA2C59D983001D12D3 /* WebView.swift */; };
+		BAEBA47A2CFED7D9007722F0 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = BAEBA4792CFED7D9007722F0 /* MarkdownUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,8 @@
 		45C662C32AC3FEA000810E7C /* Pasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pasteboard.swift; sourceTree = "<group>"; };
 		45EA940B2ABD9C5C00A08CBE /* readme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = readme.swift; sourceTree = "<group>"; };
 		45FB3B472AA7626300F3CB99 /* PlainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainButton.swift; sourceTree = "<group>"; };
+		BA5744902CF95EFA009796E2 /* image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = image.swift; sourceTree = "<group>"; };
+		BAC084A42C846CBF005C4614 /* NeonGlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeonGlow.swift; sourceTree = "<group>"; };
 		BACDFACA2C59D983001D12D3 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,10 +122,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				459FA6282A9A3C9100F7810A /* Kingfisher in Frameworks */,
-				456E37FB2AB2F108002EF433 /* SwiftUIRouter in Frameworks */,
 				45BA95CB2AADB7790063BBA9 /* UnifiedBlurHash in Frameworks */,
 				45A0F8722A9F176600012263 /* Alamofire in Frameworks */,
-				458E5C0A2AB88C4F00D19CA7 /* MarkdownUI in Frameworks */,
+				BAEBA47A2CFED7D9007722F0 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,9 +150,9 @@
 		459212E92A99C18900C0757E /* Wallpapers */ = {
 			isa = PBXGroup;
 			children = (
+				BA57448F2CF95ED7009796E2 /* Utils */,
 				45A0F8732A9F176F00012263 /* Services */,
 				459FA6332A9C790A00F7810A /* Main Menu */,
-				459FA6322A9C78DC00F7810A /* Navigation */,
 				459FA62D2A9B3DC200F7810A /* Model */,
 				459213052A9A30B300C0757E /* Test */,
 				459212F92A99C21F00C0757E /* Views */,
@@ -211,6 +213,7 @@
 				45A0F86A2A9E282000012263 /* Test4.swift */,
 				453BA1452AB055D400095A64 /* Aligment.swift */,
 				458E5C062AB8557E00D19CA7 /* ChicagoListView.swift */,
+				BAC084A42C846CBF005C4614 /* NeonGlow.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -225,13 +228,6 @@
 				45EA940B2ABD9C5C00A08CBE /* readme.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		459FA6322A9C78DC00F7810A /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Navigation;
 			sourceTree = "<group>";
 		};
 		459FA6332A9C790A00F7810A /* Main Menu */ = {
@@ -272,6 +268,14 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		BA57448F2CF95ED7009796E2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BA5744902CF95EFA009796E2 /* image.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -292,8 +296,7 @@
 				459FA6272A9A3C9100F7810A /* Kingfisher */,
 				45A0F8712A9F176600012263 /* Alamofire */,
 				45BA95CA2AADB7790063BBA9 /* UnifiedBlurHash */,
-				456E37FA2AB2F108002EF433 /* SwiftUIRouter */,
-				458E5C092AB88C4F00D19CA7 /* MarkdownUI */,
+				BAEBA4792CFED7D9007722F0 /* MarkdownUI */,
 			);
 			productName = Wallpapers;
 			productReference = 459212E72A99C18900C0757E /* Wallpapers.app */;
@@ -327,8 +330,7 @@
 				459FA6262A9A3C9100F7810A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				45A0F8702A9F176600012263 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				45BA95C92AADB7790063BBA9 /* XCRemoteSwiftPackageReference "UnifiedBlurHash" */,
-				456E37F92AB2F108002EF433 /* XCRemoteSwiftPackageReference "SwiftUIRouter" */,
-				458E5C082AB88C4F00D19CA7 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				BAEBA4782CFED7D9007722F0 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 			);
 			productRefGroup = 459212E82A99C18900C0757E /* Products */;
 			projectDirPath = "";
@@ -386,8 +388,10 @@
 				453A46692AB4B004008D3136 /* jsonload.swift in Sources */,
 				45FB3B482AA7626300F3CB99 /* PlainButton.swift in Sources */,
 				459FA6312A9B76A700F7810A /* PathView.swift in Sources */,
+				BA5744912CF95EFA009796E2 /* image.swift in Sources */,
 				45A0F8752A9F178500012263 /* Unsplash.swift in Sources */,
 				458E5C0C2AB892AD00D19CA7 /* Civitai.swift in Sources */,
+				BAC084A52C846CBF005C4614 /* NeonGlow.swift in Sources */,
 				45A0F8772A9F95A800012263 /* ImageService.swift in Sources */,
 				459212FE2A99CCE700C0757E /* Settings.swift in Sources */,
 				459212EB2A99C18900C0757E /* WallpapersApp.swift in Sources */,
@@ -544,7 +548,7 @@
 				CURRENT_PROJECT_VERSION = 0.1.5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Wallpapers/Preview Content\"";
-				DEVELOPMENT_TEAM = NF9A7HLB7L;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -586,7 +590,7 @@
 				CURRENT_PROJECT_VERSION = 0.1.5;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Wallpapers/Preview Content\"";
-				DEVELOPMENT_TEAM = NF9A7HLB7L;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -639,22 +643,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		456E37F92AB2F108002EF433 /* XCRemoteSwiftPackageReference "SwiftUIRouter" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/frzi/SwiftUIRouter.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		458E5C082AB88C4F00D19CA7 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 		459FA6262A9A3C9100F7810A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -679,19 +667,17 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		BAEBA4782CFED7D9007722F0 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		456E37FA2AB2F108002EF433 /* SwiftUIRouter */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 456E37F92AB2F108002EF433 /* XCRemoteSwiftPackageReference "SwiftUIRouter" */;
-			productName = SwiftUIRouter;
-		};
-		458E5C092AB88C4F00D19CA7 /* MarkdownUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 458E5C082AB88C4F00D19CA7 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
-			productName = MarkdownUI;
-		};
 		459FA6272A9A3C9100F7810A /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 459FA6262A9A3C9100F7810A /* XCRemoteSwiftPackageReference "Kingfisher" */;
@@ -706,6 +692,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 45BA95C92AADB7790063BBA9 /* XCRemoteSwiftPackageReference "UnifiedBlurHash" */;
 			productName = UnifiedBlurHash;
+		};
+		BAEBA4792CFED7D9007722F0 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BAEBA4782CFED7D9007722F0 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
