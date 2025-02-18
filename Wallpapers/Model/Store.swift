@@ -122,6 +122,7 @@ struct StoreImages {
 }
 
 class Store: ObservableObject {
+  static let shared = Store()
   @AppStorage("isDark") private var AppStoreisDarkMode: Bool = NSApplication.shared.effectiveAppearance.name == NSAppearance.Name.darkAqua
   @AppStorage("service") private var AppStoreservice: ServiceNames = ServiceNames.allCases.first!
   

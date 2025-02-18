@@ -12,7 +12,7 @@ enum Constants {
   static let accessKey = "PtGJwHDRFX_z1qPwcQntOmSsMEqWU8wWAU3MGK7e6EQ"
 //  static let secretKey = "eOhWXz6I_PA_ohQXINwJIB4ELUSW6V0xBFQ4ndyF-ws"
 
-  static let unsplashBaseUrl = "https://api.unsplash.com/"
+  static let unsplashBaseURL = "https://api.unsplash.com/"
 
   static var scale: CGFloat {
     guard let ns = NSScreen.main else { return 3 / 4 }

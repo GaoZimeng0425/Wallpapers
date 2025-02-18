@@ -17,16 +17,14 @@ struct PlainButton: View {
 
   var body: some View {
     ZStack {
-      
       Color.red
-    Button(action: { action() }) {
-      Text(text)
-        .plain(padding: padding, font: font)
-    }
-    .background(.ultraThickMaterial)
+      Button(action: { action() }) {
+        Text(text)
+          .plain(padding: padding, font: font)
+      }
+      .background(.ultraThickMaterial)
 //    .background(BlurEffectView())
     }
-
   }
 }
 

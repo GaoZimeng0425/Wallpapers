@@ -25,13 +25,13 @@ struct Random: Codable {
   let color, blur_hash: String?
   let current_user_collections: [UserCollections]
   let user: User
-  let urls: ImageUrl?
+  let urls: ImageURL?
   let description: String?
   let likes: Int
   let location: Location?
 }
 
-struct ImageUrl: Codable {
+struct ImageURL: Codable {
   let raw, full, regular, small, thumb: String
 }
 
@@ -53,7 +53,7 @@ struct PhotosRespose: Codable {
   let color, blur_hash: String?
   let current_user_collections: [UserCollections]
   let user: User
-  let urls: ImageUrl?
+  let urls: ImageURL?
   let description: String?
   let likes: Int
 }
@@ -88,7 +88,7 @@ struct UnsplashAPI: API {
     parameters.merge(DefaultParameters, uniquingKeysWith: { k1, _ in k1 })
   }
 
-  private static let server = Network(baseURL: Constants.unsplashBaseUrl, headers: UnsplashAPI.headers)
+  private static let server = Network(baseURL: Constants.unsplashBaseURL, headers: UnsplashAPI.headers)
 
   static func topics(page: Int = 1) async throws -> [PhotosRespose] {
     var parameters: [String: Any] = ["ids": "", "page": page, "order_by": "featured"] // featured, latest, oldest, position
@@ -161,7 +161,7 @@ struct UnsplashAPI: API {
   }
 
   static func download(id: String) async throws -> Download {
-    let dataTask = AF.request("\(Constants.unsplashBaseUrl)/photos/\(id)/download", method: .get, headers: headers).serializingDecodable(Download.self)
+    let dataTask = AF.request("\(Constants.unsplashBaseURL)/photos/\(id)/download", method: .get, headers: headers).serializingDecodable(Download.self)
     //    let response = await dataTask.response // Returns full DataResponse<TestResponse, AFError>
     let result = await dataTask.result // Returns Result<TestResponse, AFError>
     switch result {

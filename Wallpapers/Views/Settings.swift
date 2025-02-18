@@ -7,6 +7,7 @@
 
 import Carbon
 import MarkdownUI
+import ServiceManagement
 import SwiftUI
 
 func toggle() {
@@ -46,7 +47,6 @@ func toggle() {
 
 struct SettingsView: View {
   @EnvironmentObject var store: Store
-  @State private var index = 0
 
   var body: some View {
     TabView {
@@ -76,6 +76,7 @@ struct SettingsView: View {
 struct PreferencesSettingsView: View {
   @EnvironmentObject var store: Store
   @AppStorage("defaultGeneral") var selection: Int = 1
+  @State private var launchAtLogin = false
 
   var body: some View {
     ScrollView(showsIndicators: false) {
@@ -86,14 +87,27 @@ struct PreferencesSettingsView: View {
 
         Form {
           VStack(alignment: .leading, spacing: 25) {
-            HStack {
-              Text("Starup").bold().frame(width: 100, alignment: .trailing)
-              Spacer().frame(width: 30)
-              RoundedRectangle(cornerRadius: 2)
-                .stroke(style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round, dash: [3, 3], dashPhase: 10))
-                .frame(width: 16, height: 16)
-//                .background(Color.yellow)
-              Text("Auto Login")
+            if #available(macOS 13, *) {
+              HStack {
+                Text("Starup").bold().frame(width: 100, alignment: .trailing)
+                Spacer().frame(width: 30)
+                Toggle("", isOn: $launchAtLogin)
+                  .toggleStyle(.switch)
+                  .scaleEffect(0.7)
+                  .frame(width: 32)
+                  .onChange(of: launchAtLogin) { oldValue, newValue in
+                    debugPrint("\(newValue) - o \(oldValue) - launch at login")
+                    do {
+                      if newValue {
+                        try SMAppService.mainApp.register()
+                      } else {
+                        try SMAppService.mainApp.unregister()
+                      }
+                    } catch {
+                      print("Failed to \(newValue ? "enable" : "disable") launch at login: \(error.localizedDescription)")
+                    }
+                  }
+              }
             }
             HStack {
               Text("Appearance").bold().padding(0).frame(width: 100, alignment: .trailing).lineLimit(1)
@@ -210,9 +224,7 @@ struct AcknowledgmentView: View {
   var body: some View {
     ScrollView(showsIndicators: false) {
       VStack(alignment: .leading, spacing: 10) {
-        Markdown {
-          viewModel.readmeText
-        }
+        Markdown(viewModel.readmeText)
       }
       .padding(.horizontal, 20)
     }
@@ -222,8 +234,31 @@ struct AcknowledgmentView: View {
 }
 
 struct SettingsView_Previews: PreviewProvider {
-  static let store = Store()
+  static let store = Store.shared
   static var previews: some View {
     SettingsView().environmentObject(store)
+  }
+}
+
+struct SToggle: View {
+  var title: LocalizedStringKey
+  @Binding var isOn: Bool
+  var tips: LocalizedStringKey?
+
+  init(_ title: LocalizedStringKey, isOn: Binding<Bool>, tips: LocalizedStringKey? = nil) {
+    self.title = title
+    _isOn = isOn
+    self.tips = tips
+  }
+
+  var body: some View {
+    HStack(spacing: 4) {
+      Text(title)
+      Spacer()
+      Toggle("", isOn: $isOn)
+        .toggleStyle(.switch)
+        .scaleEffect(0.7)
+        .frame(width: 32)
+    }.frame(height: 16)
   }
 }

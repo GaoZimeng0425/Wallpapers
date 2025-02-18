@@ -90,7 +90,7 @@ public enum wallpaperService {
   }
 }
 
-enum ImageService {
+struct ImageService {
   static let downloader = ImageDownloader.default
   static var downloads: [KFCrossPlatformImage] = []
 

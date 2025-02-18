@@ -29,7 +29,7 @@ struct ContentView: View {
         let result = try await store.service.service(store.images.index)
         let list = ImageViewProps.adapt(result)
         debugPrint(list)
-        if list.count == 0 {
+        if list.isEmpty {
           canLoad = false
         }
         store.images.list += list
@@ -95,7 +95,7 @@ struct ContentView: View {
         .environmentObject(store)
       getTabView()
     }
-    .onChange(of: store.service) { _ in
+    .onChange(of: store.service) {
       store.resetImage()
       canLoad = true
       search()
@@ -125,6 +125,6 @@ extension AnyTransition {
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView().environmentObject(Store())
+    ContentView().environmentObject(Store.shared)
   }
 }

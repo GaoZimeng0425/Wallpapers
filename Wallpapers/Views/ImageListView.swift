@@ -66,19 +66,17 @@ struct ImageListView: View {
       if store.isLoading { return }
       action?()
     }, onScrollChange: { y in
-      debugPrint(y)
       scrollY = y
     }) { geometry in
       VStack(alignment: .center, spacing: 0) {
-        RotatingBorderButton(buttonText: "Click").padding(20)
         ForEach(Array(imageInfos.enumerated()), id: \.offset) { index, image in
           let opacity = hoverIndex == index ? 1.0 : 0.0
           ImageItemView(info: image, frame: [geometry.size.width, geometry.size.width * Constants.scale])
             .id(index)
             .clipped()
+            .contentShape(.rect)
             .onHover { isHovering in
               if isHovering == true {
-                debugPrint(hoverIndex)
                 hoverIndex = index
               }
             }
@@ -260,6 +258,6 @@ let obj = try! decoder.decode(UnsplashResult.self, from: jsonData)
 struct ImageListView_Previews: PreviewProvider {
   static var previews: some View {
     ImageListView(imageInfos: ImageViewProps.adapt(obj))
-      .environmentObject(Store())
+      .environmentObject(Store.shared)
   }
 }

@@ -9,10 +9,10 @@ import SwiftUI
 
 @main
 struct WallpapersApp: App {
-  @StateObject var store = Store()
+  @StateObject var store = Store.shared
   @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
   @State private var searchText = ""
-  
+
   // https://zhuanlan.zhihu.com/p/626490225
   init() {
     DownloadService.createFolderInPicturesDirectory()
@@ -49,12 +49,46 @@ struct WallpapersApp: App {
 //          self.appDelegate.store = self.store
 //        }
 //    }
-    MenuBarExtra("Utility App", systemImage: "scribble.variable") {
-      ContentView().environmentObject(store)
-    }
-//    MenuBarExtra(content: Label(title: {Text("Utility App 2")}, icon: {Image(systemName: "start")})) {
+//    MenuBarExtra("Utility App", systemImage: "scribble.variable") {
 //      ContentView().environmentObject(store)
 //    }
+//    MenuBarExtra("asdf") {
+//      VStack {
+//        Button("Show Fixed Window") {
+//          if let window = NSApp.windows.first(where: { $0.title == "Fixed Menu" }) {
+//            debugPrint("asdfasdf")
+//            window.setIsVisible(false)
+//            window.makeKeyAndOrderFront(nil) // 如果窗口已存在，则激活
+//          } else {
+//            // 创建并显示一个新窗口
+//            let fixedWindow = NSWindow(
+//              contentRect: NSRect(x: 0, y: 0, width: 360, height: 720),
+////              styleMask: [.titled, .closable, .resizable],
+//              styleMask: [.borderless, .nonactivatingPanel],
+//              backing: .buffered,
+//              defer: false
+//            )
+//            fixedWindow.hasShadow = true
+//            fixedWindow.level = .floating
+////            fixedWindow.title = "Fixed Menu"
+////            fixedWindow.center()
+//            fixedWindow.contentView = NSHostingView(rootView: ContentView().environmentObject(store))
+//            fixedWindow.collectionBehavior.insert(.fullScreenAuxiliary) // Allows the pannel to appear in a fullscreen space
+//            fixedWindow.collectionBehavior.insert(.canJoinAllSpaces)
+//            fixedWindow.titleVisibility = .hidden
+//            fixedWindow.titlebarAppearsTransparent = false
+//            fixedWindow.isMovableByWindowBackground = true
+//            fixedWindow.isReleasedWhenClosed = false
+//            fixedWindow.isOpaque = false
+////            fixedWindow.backgroundColor = .clear
+//            fixedWindow.makeKeyAndOrderFront(fixedWindow.self)
+//          }
+//        }
+//      }
+//      ContentView()
+//        .frame(width: 360, height: 720)
+//        .environmentObject(store)
+//    }.menuBarExtraStyle(.window)
     Settings {
       SettingsView()
         .frame(width: 600)
@@ -65,7 +99,7 @@ struct WallpapersApp: App {
 
 class AppDelegate: NSObject, NSApplicationDelegate {
   static var shared: AppDelegate!
-  var store: Store = Store()
+  var store: Store = .shared
 
   var popover: NSPopover!
   var statusBarItem: NSStatusItem!
@@ -78,7 +112,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     popover.contentSize = NSSize(width: 360, height: 720)
     popover.contentViewController = NSViewController()
     popover.contentViewController?.view = NSHostingView(rootView: ContentView().environmentObject(store))
-    popover.contentViewController?.view.window?.center()
+//    popover.contentViewController?.view.window?.center()
     self.popover = popover
   }
 
@@ -96,7 +130,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
   }
 
-  func applicationDidFinishLaunching(_ aNotification: Notification) {
+  func applicationDidFinishLaunching(_: Notification) {
     if let window = NSApplication.shared.windows.first {
       window.standardWindowButton(.zoomButton)?.isEnabled = false
     }
@@ -111,18 +145,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     button.image = NSImage(systemSymbolName: "scribble.variable", accessibilityDescription: nil)
     button.action = #selector(togglePopover(_:))
   }
-  
+
   func applicationDidResignActive() {
     NSApplication.shared.hide(self)
   }
-  
-  func windowShouldClose(_ sender: NSWindow) -> Bool {
+
+  func windowShouldClose(_: NSWindow) -> Bool {
     print("aaclose")
     NSApp.hide(nil)
     return false
   }
 
-  func applicationWillTerminate(_ aNotification: Notification) {
+  func applicationWillTerminate(_: Notification) {
     print("application terminate")
     // Insert code here to tear down your application
   }

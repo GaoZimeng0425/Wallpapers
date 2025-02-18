@@ -7,8 +7,8 @@
 import SwiftUI
 
 struct BlurEffectView: NSViewRepresentable {
-  var intensity: NSVisualEffectView.Material = .fullScreenUI
-  
+  var intensity: NSVisualEffectView.Material = .hudWindow
+
   func makeNSView(context: Context) -> NSVisualEffectView {
     let visualEffectView = NSVisualEffectView()
     
@@ -28,12 +28,13 @@ struct BlurEffectView: NSViewRepresentable {
 struct BlurEffect_Preview: PreviewProvider {
   static var previews: some View {
     HStack {
-      Button {
-      } label: {
-         Text("ultraThinMaterial")
-      }.plain().padding(20)
-        .background( .ultraThinMaterial )
-        .clipShape(RoundedRectangle(cornerRadius: 15))
+      BlurEffectView(intensity: .selection)
+//      Button {
+//      } label: {
+//         Text("ultraThinMaterial")
+//      }.plain().padding(20)
+//        .background( .ultraThinMaterial )
+//        .clipShape(RoundedRectangle(cornerRadius: 15))
     }.frame(width: 200, height: 200)
     
   }

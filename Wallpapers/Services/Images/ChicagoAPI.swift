@@ -296,11 +296,11 @@ struct ChicagoAPI: API {
       "page": page,
       "limit": 5,
       "q": "Painting and Sculpture of Europe",
-//      "q": "modern and contemporary art",
-//      "q": "oil on canvas",
+      //      "q": "modern and contemporary art",
+      //      "q": "oil on canvas",
       "fields": "id,title,image_id,thumbnail,artist_title",
-//      "query": ["term": ["is_public_domain": true]]
-//      "query[term][is_public_domain]": true
+      //      "query": ["term": ["is_public_domain": true]]
+      //      "query[term][is_public_domain]": true
     ]
 
     do {
@@ -348,3 +348,16 @@ struct ChicagoAPI: API {
     }
   }
 }
+
+extension Encodable {
+  func toDictionary() -> [String: Any] {
+    let encoder = JSONEncoder()
+    if let data = try? encoder.encode(self),
+       let dictionary = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+      return dictionary
+    }
+    return [:]
+  }
+}
+
+
