@@ -64,6 +64,7 @@ $ sudo xattr -d com.apple.quarantine /Applications/Wallpapers.app
 - [Kingfisher](https://github.com/onevcat/Kingfisher)
 - [Alamofire](https://github.com/Alamofire/Alamofire)
 - [UnifiedBlurHash](https://github.com/iankoex/UnifiedBlurHash)
+- [LaunchAtLogin](https://github.com/sindresorhus/LaunchAtLogin-Modern)
 
 ## OS Requirement
 

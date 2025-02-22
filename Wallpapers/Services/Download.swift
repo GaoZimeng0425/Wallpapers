@@ -81,9 +81,6 @@ struct DownloadService {
 
   static func createFolderInPicturesDirectory() {
     guard let appPicturesDirectory = appPicturesDirectory else { return }
-    debugPrint("----------------------")
-    debugPrint("fileExists: \(fileExists(path: appPicturesDirectory))")
-    debugPrint("----------------------")
     if fileExists(path: appPicturesDirectory) { return }
 
     do {

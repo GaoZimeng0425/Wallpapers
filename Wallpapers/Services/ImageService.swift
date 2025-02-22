@@ -19,23 +19,22 @@ public enum wallpaperService {
 
     fileprivate var nsScreens: [NSScreen] {
       switch self {
-        case .all:
-          return NSScreen.screens
-        case .main:
-          guard let mainScreen = NSScreen.main else {
-            return []
-          }
+      case .all:
+        return NSScreen.screens
+      case .main:
+        guard let mainScreen = NSScreen.main else {
+          return []
+        }
 
-          return [mainScreen]
-        case .index(let index):
-          guard index < NSScreen.screens.count else {
-            return []
-          }
-          return [NSScreen.screens[index]]
-
+        return [mainScreen]
+      case let .index(index):
+        guard index < NSScreen.screens.count else {
+          return []
+        }
+        return [NSScreen.screens[index]]
 //          return [screen]
-        case .nsScreens(let nsScreens):
-          return nsScreens
+      case let .nsScreens(nsScreens):
+        return nsScreens
       }
     }
   }
@@ -48,31 +47,31 @@ public enum wallpaperService {
     case center
   }
 
-  public static func options(_ image: URL, screen: Screen = .all, scale: Scale = .auto, fillColor: NSColor? = nil) -> [NSWorkspace.DesktopImageOptionKey: Any] {
+  public static func options(_: URL, screen _: Screen = .all, scale: Scale = .auto, fillColor: NSColor? = nil) -> [NSWorkspace.DesktopImageOptionKey: Any] {
     var options = [NSWorkspace.DesktopImageOptionKey: Any]()
 
     switch scale {
-      case .auto:
-        break
-      case .fill:
-        options[.imageScaling] = NSImageScaling.scaleProportionallyUpOrDown.rawValue
-        options[.allowClipping] = true
-      case .fit:
-        options[.imageScaling] = NSImageScaling.scaleProportionallyUpOrDown.rawValue
-        options[.allowClipping] = false
-      case .stretch:
-        options[.imageScaling] = NSImageScaling.scaleAxesIndependently.rawValue
-        options[.allowClipping] = true
-      case .center:
-        options[.imageScaling] = NSImageScaling.scaleNone.rawValue
-        options[.allowClipping] = false
+    case .auto:
+      break
+    case .fill:
+      options[.imageScaling] = NSImageScaling.scaleProportionallyUpOrDown.rawValue
+      options[.allowClipping] = true
+    case .fit:
+      options[.imageScaling] = NSImageScaling.scaleProportionallyUpOrDown.rawValue
+      options[.allowClipping] = false
+    case .stretch:
+      options[.imageScaling] = NSImageScaling.scaleAxesIndependently.rawValue
+      options[.allowClipping] = true
+    case .center:
+      options[.imageScaling] = NSImageScaling.scaleNone.rawValue
+      options[.allowClipping] = false
     }
 
     options[.fillColor] = fillColor
 
     return options
   }
-  
+
   static func setDesktopImage(url: URL) {
     let workspace = NSWorkspace.shared
     debugPrint(NSScreen.screens.map { $0.className })
@@ -80,7 +79,7 @@ public enum wallpaperService {
     guard let options = workspace.desktopImageOptions(for: screen) else {
       return
     }
-    
+
     do {
       try NSWorkspace.shared.setDesktopImageURL(url, for: NSScreen.main ?? NSScreen.screens.first!, options: options)
     } catch let error as NSError {
@@ -90,7 +89,7 @@ public enum wallpaperService {
   }
 }
 
-struct ImageService {
+enum ImageService {
   static let downloader = ImageDownloader.default
   static var downloads: [KFCrossPlatformImage] = []
 
@@ -114,16 +113,16 @@ struct ImageService {
       }) { result in
 
         switch result {
-          case .success(let value):
-            guard let url = value.url else { return }
-            let name = url.lastPathComponent
-            let exe = url.pathExtension == "" ? "" : ".\(url.pathExtension)"
-            Task {
-              let url = try await DownloadService.saveImageToDownloads(data: value.originalData, name: "\(name)\(exe)")
-              continuation.resume(returning: url)
-            }
-          case .failure(let error):
-            continuation.resume(throwing: error)
+        case let .success(value):
+          guard let url = value.url else { return }
+          let name = url.lastPathComponent
+          let exe = url.pathExtension == "" ? "" : ".\(url.pathExtension)"
+          Task {
+            let url = try await DownloadService.saveImageToDownloads(data: value.originalData, name: "\(name)\(exe)")
+            continuation.resume(returning: url)
+          }
+        case let .failure(error):
+          continuation.resume(throwing: error)
         }
       }
     }
@@ -135,19 +134,18 @@ struct ImageService {
     }
     downloader.downloadImage(with: url!) { result in
       switch result {
-        case .success(let value):
-          print("success")
-          guard let url = value.url else { return }
-          let name = url.lastPathComponent
-          let exe = url.pathExtension == "" ? "" : ".\(url.pathExtension)"
-          Task {
-            let url = try await DownloadService.saveImageToDownloads(data: value.originalData, name: "\(name)\(exe)")
-            handle(url)
-          }
+      case let .success(value):
+        guard let url = value.url else { return }
+        let name = url.lastPathComponent
+        let exe = url.pathExtension == "" ? "" : ".\(url.pathExtension)"
+        debugPrint("ImageService download: 142 ", exe)
+        Task {
+          let url = try await DownloadService.saveImageToDownloads(data: value.originalData, name: "\(name)\(exe)")
+          handle(url)
+        }
 //          return value
-          debugPrint("func download value.image: ", value.image)
-        case .failure(let error):
-          debugPrint("func download error: ", error)
+      case let .failure(error):
+        debugPrint("func download error: ", error)
       }
     }
   }
@@ -191,16 +189,16 @@ enum ImageResolution: String {
 
   func color() -> Color {
     switch self {
-      case .fullHD, .HD, .qHD:
-        return Color.purple
-      case ._2K, .QHD:
-        return Color.orange
-      case ._4K, ._5K, .UHD:
-        return Color.blue
-      case ._8K:
-        return Color.red
-      case .Unknown:
-        return Color.brown
+    case .fullHD, .HD, .qHD:
+      return Color.purple
+    case ._2K, .QHD:
+      return Color.orange
+    case ._4K, ._5K, .UHD:
+      return Color.blue
+    case ._8K:
+      return Color.red
+    case .Unknown:
+      return Color.brown
     }
   }
 

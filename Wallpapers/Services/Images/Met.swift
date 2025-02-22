@@ -106,7 +106,6 @@ enum MetAPI {
         images = images + result
       }
     }
-    debugPrint(images)
     return images
   }
 
