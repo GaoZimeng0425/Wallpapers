@@ -8,15 +8,15 @@
 import Alamofire
 import Foundation
 
-struct CivitalResponse {
-  
-  struct Models {
+enum CivitalResponse {
+  enum Models {
     struct Result: Codable {
       let items: [Item]?
       let metadata: ResultMetadata?
     }
-    
+
     // MARK: - Item
+
     struct Item: Codable {
       let id: Int?
       let name, description, type: String?
@@ -28,14 +28,16 @@ struct CivitalResponse {
       let tags: [String]?
       let modelVersions: [ModelVersion]?
     }
-    
+
     // MARK: - Creator
+
     struct Creator: Codable {
       let username: String?
       let image: String?
     }
-    
+
     // MARK: - ModelVersion
+
     struct ModelVersion: Codable {
       let id, modelId: Int?
       let name, createdAt, updatedAt: String?
@@ -48,8 +50,9 @@ struct CivitalResponse {
       let images: [Image]?
       let downloadUrl: String?
     }
-    
+
     // MARK: - File
+
     struct File: Codable {
       let name: String?
       let id: Int?
@@ -60,18 +63,19 @@ struct CivitalResponse {
       let hashes: Hashes?
       let downloadUrl: String?
       let primary: Bool?
-      
+
       enum CodingKeys: String, CodingKey {
         case name, id
         case sizeKb = "sizeKB"
         case type, metadata, pickleScanResult, pickleScanMessage, virusScanResult, scannedAt, hashes, downloadUrl, primary
       }
     }
-    
+
     // MARK: - Hashes
+
     struct Hashes: Codable {
       let autoV2, sha256, crc32, blake3: String?
-      
+
       enum CodingKeys: String, CodingKey {
         case autoV2 = "AutoV2"
         case sha256 = "SHA256"
@@ -79,13 +83,15 @@ struct CivitalResponse {
         case blake3 = "BLAKE3"
       }
     }
-    
+
     // MARK: - FileMetadata
+
     struct FileMetadata: Codable {
       let fp, size, format: String?
     }
-    
+
     // MARK: - Image
+
     struct Image: Codable {
       let url: String?
       let nsfw: Bool?
@@ -93,8 +99,9 @@ struct CivitalResponse {
       let hash: String?
       let meta: Meta?
     }
-    
+
     // MARK: - Meta
+
     struct Meta: Codable {
       let ensd, size: String?
       let seed: Int?
@@ -110,7 +117,7 @@ struct CivitalResponse {
       let negativePrompt, denoisingStrength, clipSkip: String?
       let firstPassSize: FirstPassSize?
       let hiresSteps, maskBlur, model: String?
-      
+
       enum CodingKeys: String, CodingKey {
         case ensd = "ENSD"
         case size = "Size"
@@ -131,57 +138,62 @@ struct CivitalResponse {
         case model = "Model"
       }
     }
-    
+
     enum FirstPassSize: String, Codable {
       case the512X320 = "512x320"
       case the512X512 = "512x512"
       case the576X448 = "576x448"
     }
-    
+
     enum HiresUpscaler: String, Codable {
       case latent = "Latent"
       case latentNearestExact = "Latent (nearest-exact)"
       case rEsrgan4X = "R-ESRGAN 4x+"
     }
-    
+
     // MARK: - Resource
+
     struct Resource: Codable {
       let name, type: String?
       let weight: Double?
       let hash: String?
     }
-    
+
     enum Sampler: String, Codable {
       case ddim = "DDIM"
       case dpm2MKarras = "DPM++ 2M Karras"
       case eulerA = "Euler a"
     }
-    
+
     // MARK: - ModelVersionStats
+
     struct ModelVersionStats: Codable {
       let downloadCount, ratingCount: Int?
       let rating: Double?
     }
-    
+
     // MARK: - ItemStats
+
     struct ItemStats: Codable {
       let downloadCount, favoriteCount, commentCount, ratingCount: Int?
       let rating: Double?
     }
-    
+
     // MARK: - ResultMetadata
+
     struct ResultMetadata: Codable {
       let totalItems, currentPage, pageSize, totalPages: Int?
       let nextPage: String?
     }
   }
+
   // MARK: - Result
 
   struct Result: Codable {
     let items: [Item]
     let metadata: Metadata
   }
-  
+
   // MARK: - Item
 
   struct Item: Codable {
@@ -196,7 +208,7 @@ struct CivitalResponse {
     let meta: Meta?
     let username: String?
   }
-  
+
   // MARK: - Meta
 
   struct Meta: Codable {
@@ -208,7 +220,7 @@ struct CivitalResponse {
     let cfgScale: Double?
     let clipSkip, hiresUpscale, hiresUpscaler, negativePrompt: String?
     let denoisingStrength: String?
-    
+
     enum CodingKeys: String, CodingKey {
       case size = "Size"
       case seed
@@ -221,14 +233,14 @@ struct CivitalResponse {
       case denoisingStrength = "Denoising strength"
     }
   }
-  
+
   // MARK: - Stats
 
   struct Stats: Codable {
     let cryCount, laughCount, likeCount, dislikeCount: Int?
     let heartCount, commentCount: Int?
   }
-  
+
   // MARK: - Metadata
 
   struct Metadata: Codable {
@@ -239,38 +251,37 @@ struct CivitalResponse {
 
 enum CivitalAPI {
   private static let baseURL = "https://civitai.com/api/v1"
-  private static let headers = HTTPHeaders([])
+
+  private static let headers = HTTPHeaders([
+    HTTPHeader(name: "Content-Type", value: "application/json"),
+    HTTPHeader(name: "Authorization", value: "Bearer \(Secret.civitai.apiKey)"),
+  ])
   private static let server = Network(baseURL: baseURL, headers: headers)
-  
+
   static func images(page: Int = 1) async throws -> CivitalResponse.Result {
     let parameters: [String: Any] = [
       "limit": 5,
-//      "postId": 590764,
-//      "modelId": modelId,
-//      "modelVersionId": modelVersionId,
-//      "username": username,
-      "nsfw": "None", // None, Soft, Mature, X
+      "cursor": page * 5,
+      "nsfw": "Soft", // None, Soft, Mature, X
       "sort": "Most Reactions", // Most Reactions, Most Comments, Newest
-      "period": "Week", //  AllTime, Year, Month, Week, Day
-      "page": page
+      "period": "Day", //  AllTime, Year, Month, Week, Day
     ]
 
     do {
       let result: CivitalResponse.Result = try await server.get(path: "/images", parameters: parameters)
-      debugPrint(result)
       return result
     } catch {
       throw error
     }
   }
-  
+
   static func tags(page: Int = 1, query: String = "fantasy") async throws -> CivitalResponse.Result {
     let parameters: [String: Any] = [
       "limit": 5,
       "query": query,
-      "page": page
+      "page": page,
     ]
-    
+
     do {
       let result: CivitalResponse.Result = try await server.get(path: "/tags", parameters: parameters)
       debugPrint(result)
@@ -279,17 +290,17 @@ enum CivitalAPI {
       throw error
     }
   }
-  
+
   static func models(page: Int = 1, tag: String = "fantasy") async throws -> CivitalResponse.Result {
     let parameters: [String: Any] = [
       "limit": 5,
       "tag": tag,
 //      "types": "", //(Checkpoint, TextualInversion, Hypernetwork, AestheticGradient, LORA, Controlnet, Poses)
-      "sort": "Highest Rated", //Highest Rated, Most Downloaded, Newest
+      "sort": "Highest Rated", // Highest Rated, Most Downloaded, Newest
       "page": page,
-      "nsfw": false
+      "nsfw": false,
     ]
-    
+
     do {
       let result: CivitalResponse.Result = try await server.get(path: "/models", parameters: parameters)
       debugPrint(result)
