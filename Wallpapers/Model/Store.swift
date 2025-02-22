@@ -34,7 +34,7 @@ enum Suplier: String {
       case .Civital:
         return Image("Civital").logo(size: 40)
       case .Pexels:
-        return Image("Unsplash_Symbol").logo(size: 22, padding: 5)
+        return Image("Pexels").logo(size: 22, padding: 5)
     }
   }
 }
@@ -89,7 +89,7 @@ enum ServiceNames: String, CaseIterable {
       case .Met:
         return Image("The Metropolitan Museum")
       case .Pexels:
-        return Image("The Metropolitan Museum")
+        return Image("pexels")
     }
   }
   

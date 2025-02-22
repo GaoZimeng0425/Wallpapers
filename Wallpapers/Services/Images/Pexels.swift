@@ -36,7 +36,7 @@ public enum PexelsAPI {
   private static let headers = HTTPHeaders([
     HTTPHeader(name: "Accept", value: "application/json"),
     HTTPHeader(name: "Content-Type", value: "application/json"),
-    HTTPHeader(name: "Authorization", value: "yskDbgkCBmlWFceao3A9xp2yiQ0mq16lLcH8jv8jhTIzdfrrqw2YvmHJ")
+    HTTPHeader(name: "Authorization", value: Secret.pexels.apiKey)
   ])
   private static let server = Network(baseURL: baseURL, headers: headers)
 
