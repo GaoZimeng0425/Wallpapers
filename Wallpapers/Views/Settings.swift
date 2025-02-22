@@ -130,7 +130,7 @@ struct PreferencesSettingsView: View {
               Text("Open Pictrue Directory").bold().padding(0).frame(width: 100, alignment: .trailing).lineLimit(1)
               Spacer().frame(width: 30)
               Button(action: {
-                DownloadService.openDownloadPrctrueDirectroy()
+                DownloadService.openDownloadPictureDirectory()
               }) {
                 Image(systemName: "opticaldiscdrive")
                   .IconStyle()

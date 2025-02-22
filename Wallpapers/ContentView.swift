@@ -75,7 +75,7 @@ struct ContentView: View {
       case .gallery:
         EmptyView()
       case .local:
-        LocalPictrueListView()
+        LocalPictureListView()
           .background(VisualEffectView())
           .zIndex(1000)
           .transition(.moveAndFade)

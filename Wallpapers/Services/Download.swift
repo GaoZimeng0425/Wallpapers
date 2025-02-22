@@ -15,7 +15,7 @@ struct DownloadService {
     case networkError
   }
 
-  static func openDownloadPrctrueDirectroy() {
+  static func openDownloadPictureDirectory() {
     guard let path = DownloadService.appPicturesDirectory else { return }
     NSWorkspace.shared.open(path)
   }

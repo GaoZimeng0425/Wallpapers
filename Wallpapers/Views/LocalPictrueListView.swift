@@ -10,10 +10,10 @@ import QuickLook
 import QuickLookThumbnailing
 import SwiftUI
 
-struct LocalPictrueListView: View {
+struct LocalPictureListView: View {
   fileprivate func OpenButton() -> some View {
-    return Button(action: {
-      DownloadService.openDownloadPrctrueDirectroy()
+    Button(action: {
+      DownloadService.openDownloadPictureDirectory()
     }) {
       HStack {
         Image(systemName: "opticaldiscdrive")
@@ -21,13 +21,11 @@ struct LocalPictrueListView: View {
         Text("Open Directory")
           .font(.system(size: 12))
       }
-    }.plain()
-      .padding(.horizontal, 15)
-      .padding(.vertical, 5)
-      .overlay(content: {
-        RoundedRectangle(cornerRadius: 5).stroke(Color.gray.opacity(0.75), lineWidth: 1)
-      })
-      .padding(5)
+      .padding(.vertical, 10)
+      .frame(maxWidth: .infinity)
+      .contentShape(Rectangle())
+    }
+    .buttonStyle(.plain)
   }
 
   var body: some View {
@@ -41,7 +39,8 @@ struct LocalPictrueListView: View {
             }
           }
         }
-      }.listStyle(.plain).frame(maxWidth: .infinity)
+      }
+      .frame(maxWidth: .infinity)
     }
   }
 }
@@ -84,19 +83,17 @@ struct ImageView: View {
 //        }
 //      KFImage.url(url)
 //        .resizable()
-//        .scaledToFill()
 //        .frame(width: frame[0], height: frame[1])
+//        .scaledToFill()
 //        .clipped()
       ThumbnailingView(url: url, width: frame[0], height: frame[1]) { nsImage in
         Image(nsImage: nsImage)
           .resizable()
+          .frame(width: frame[0], height: frame[1])
           .aspectRatio(contentMode: .fill)
           .clipped()
       }
-      .frame(width: frame[0], height: frame[1])
-      .clipped()
     }
-    .frame(width: frame[0], height: frame[1])
     .overlay(alignment: .center) {
       if !hover {
         Button(action: {
@@ -112,13 +109,6 @@ struct ImageView: View {
         }.buttonStyle(.borderless)
       }
     }
-//    .onAppear {
-//      print("appear")
-//      imageView = KFImage.url(url)
-//    }.onDisappear {
-//      print("disappear")
-//      imageView = nil
-//    }
   }
 }
 
@@ -162,6 +152,6 @@ struct ThumbnailingView<Content>: View where Content: View {
 
 struct LocalPictrueListView_Previews: PreviewProvider {
   static var previews: some View {
-    LocalPictrueListView().frame(height: 1000)
+    LocalPictureListView().frame(height: 1000)
   }
 }
