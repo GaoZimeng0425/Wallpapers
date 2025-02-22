@@ -34,25 +34,30 @@ struct TTTT: View {
 
         HStack {
           Image(systemName: "sun.min")
-          Slider(value: $progress, in: 0 ... 1, step: 0.2)
+          Slider(value: $progress, in: 0 ... 1, step: 0.1)
           Image(systemName: "sun.max.fill")
         }.padding()
 
         Stepper(onIncrement: {
-          self.quantity += 1
+          withAnimation {
+            self.progress += 0.1
+          }
         }, onDecrement: {
-          self.quantity -= 1
-        }, label: { Text("Quantity \(quantity)") })
+          withAnimation {
+            self.progress -= 0.1
+          }
+        }, label: { Text("Quantity \(progress)") })
 
         ZStack {
           Text("Hello")
             .padding(10)
             .background(.red)
             .opacity(0.8)
-          Text("World")
+          Text("Hello")
             .padding(20)
             .background(.yellow)
-            .offset(x: 20, y: 20)
+            .opacity(0.6)
+            .offset(x: 10, y: 10)
         }
 
         List {
@@ -63,7 +68,7 @@ struct TTTT: View {
           Section(header: Text("SwiftUI"), footer: Text("A lot to learn")) {
             Text("List")
           }
-        }.listStyle(.sidebar)
+        }
 
         ScrollView(.horizontal) {
           LazyHGrid(rows: rows, alignment: .top) {

@@ -9,39 +9,38 @@ import SwiftUI
 
 struct Test4: View {
   enum Flavor: String, CaseIterable, Identifiable {
-    var id: String { self.rawValue }
-    case vanilla, chocolate, strawberry
+    var id: String { rawValue }
+    case vanilla, chocolate, strawberry, raspberry, blueberry, strawberr, cherry
   }
 
   var gradient: LinearGradient {
     .linearGradient(
-      Gradient(colors: [.black.opacity(0.8), .black.opacity(0)]),
+      Gradient(colors: [.red.opacity(0.8), .black.opacity(0)]),
       startPoint: .bottom,
-      endPoint: .center)
+      endPoint: .center
+    )
   }
-  
+
   var body: some View {
     List {
       ForEach(Flavor.allCases) {
         Text($0.rawValue)
-          .listRowInsets(.init(top: 20,
-                               leading: 10,
-                               bottom: 20,
-                               trailing: 10))
+          .listRowInsets(.init(top: 20, leading: 10, bottom: 20, trailing: 10))
+          .foregroundColor(.red)
+          .fontWeight(.bold)
       }
-    }
-    
-    ZStack(alignment: .bottomLeading) {
       gradient
-      VStack(alignment: .leading) {
-        Text("name")
-          .font(.title)
-          .bold()
-        Text("landmark.park")
-      }
-      .padding()
+//      ZStack(alignment: .bottomLeading) {
+//        VStack(alignment: .leading) {
+//          Text("name")
+//            .font(.title)
+//            .bold()
+//          Text("landmark.park")
+//        }
+//        .padding()
+//      }
+//      .foregroundColor(.white)
     }
-    .foregroundColor(.white)
   }
 }
 

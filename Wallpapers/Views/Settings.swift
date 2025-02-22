@@ -6,7 +6,6 @@
 //
 
 import Carbon
-import MarkdownUI
 import ServiceManagement
 import SwiftUI
 
@@ -224,7 +223,7 @@ struct AcknowledgmentView: View {
   var body: some View {
     ScrollView(showsIndicators: false) {
       VStack(alignment: .leading, spacing: 10) {
-        Markdown(viewModel.readmeText)
+//        Markdown(viewModel.readmeText)
       }
       .padding(.horizontal, 20)
     }
