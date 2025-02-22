@@ -1,37 +1,53 @@
+
 <div>
   <h3 align="center">Wallpapers</h3>
   <p align="center">
+    <img align="center" alt="logo" src="./Resource/wallpapers-logo.png" width="200" />
+  </p>
+  <p align="center">
     Toggle the desktop wallpaper app, integrate multiple image sources in the integration
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
+    <a href="https://github.com/GaoZimeng0425/Wallpapers/releases/">Download</a>
+    ·
+    <a href="https://github.com/GaoZimeng0425/Wallpapers/issues/new">Report Bug</a>
+    ·
+    <a href="#usage">Usage</a>
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
   </p>
 </div>
 
-<!-- ACKNOWLEDGMENTS -->
+<h3 align="center">APP screenshot</h3>
+<p align="center">
+  <img align="center" alt="app" src="./Resource/wallpapers-app.png" width="400" />
+</p>
+<h3 align="center">Image Providers</h3>
+<p align="center">
+  <img align="center" alt="preview" src="./Resource/wallpapers-provider.png" width="400" />
+</p>
 
-## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+## Usage
+No developer certificate, need to remove Apple authentication
+```bash
+$ sudo xattr -d com.apple.quarantine /Applications/Wallpapers.app
+```
 
-- [Choose an Open Source License](https://choosealicense.com)
-- [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-- [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-- [Malven's Grid Cheatsheet](https://grid.malven.co/)
-- [Img Shields](https://shields.io)
-- [GitHub Pages](https://pages.github.com)
-- [Font Awesome](https://fontawesome.com)
-- [React Icons](https://react-icons.github.io/react-icons/search)
+## Feature
+
+- Multiple Image Sources
+- Easy to change desktop wallpaper
+
+## TODO
+
+- [ ] Multiple desktop monitors
+- [ ] More Image Sources
+- [ ] Auto change wallpaper
+- [ ] Keyboard shortcut
 
 ## Wallpaper Image Providers
 
-- [unsplash](https://unsplash.com/documentation#search-photos)
+- [Unsplash](https://unsplash.com/documentation#search-photos)
 - [RIJKS Museum](https://data.rijksmuseum.nl/object-metadata/api/)
 - [Art Institute of Chicago](https://www.artic.edu/open-access/public-api)
 - [Civitai](https://github.com/civitai/civitai/wiki/REST-API-Reference)
@@ -43,4 +59,16 @@ Use this space to list resources you find helpful and would like to give credit 
 - [Harvardart Museums](https://github.com/harvardartmuseums/api-docs)
 - [DiMu](https://github.com/nasjonalmuseet/DiMu-API-documentation)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## Acknowledgments
+
+- [Kingfisher](https://github.com/onevcat/Kingfisher)
+- [Alamofire](https://github.com/Alamofire/Alamofire)
+- [UnifiedBlurHash](https://github.com/iankoex/UnifiedBlurHash)
+
+## OS Requirement
+
+macOS 14 minimum for SwiftUI support
+
+## Statement
+
+developed by interest
