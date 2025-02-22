@@ -15,7 +15,7 @@ struct DownloadService {
     case networkError
   }
 
-  static func openDownloadPrctrueDirectroy() {
+  static func openDownloadPictureDirectory() {
     guard let path = DownloadService.appPicturesDirectory else { return }
     NSWorkspace.shared.open(path)
   }
@@ -81,9 +81,6 @@ struct DownloadService {
 
   static func createFolderInPicturesDirectory() {
     guard let appPicturesDirectory = appPicturesDirectory else { return }
-    debugPrint("----------------------")
-    debugPrint("fileExists: \(fileExists(path: appPicturesDirectory))")
-    debugPrint("----------------------")
     if fileExists(path: appPicturesDirectory) { return }
 
     do {

@@ -28,7 +28,6 @@ struct ContentView: View {
       do {
         let result = try await store.service.service(store.images.index)
         let list = ImageViewProps.adapt(result)
-        debugPrint(list)
         if list.isEmpty {
           canLoad = false
         }
@@ -57,12 +56,12 @@ struct ContentView: View {
         .onAppear {
           search()
         }
-//        .transformEffect(CGAffineTransform(rotationAngle: -30 * (.pi / 180)))
 
       switch tabIndex {
       case .select:
         SelectView(service: store.service, onServiceChange: { service in
           if store.service != service { store.service = service }
+          ImageService.cleanCache()
           withAnimation(.linear(duration: 0.2)) { tabIndex = .gallery }
         })
         .background(VisualEffectView())
@@ -76,7 +75,7 @@ struct ContentView: View {
       case .gallery:
         EmptyView()
       case .local:
-        LocalPictrueListView()
+        LocalPictureListView()
           .background(VisualEffectView())
           .zIndex(1000)
           .transition(.moveAndFade)

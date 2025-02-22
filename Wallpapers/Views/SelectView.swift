@@ -55,7 +55,6 @@ struct SelectView: View {
                   }
                 }
             }
-            .hoverPoint()
             .buttonStyle(.borderless)
             .overlay(alignment: .bottomLeading) {
               ZStack {
@@ -65,14 +64,18 @@ struct SelectView: View {
                   .background(Color.black.opacity(0.75))
                   .cornerRadius(5)
               }.padding(15)
+                .allowsHitTesting(false)
             }
             .overlay(alignment: .topTrailing) {
               VStack(alignment: .trailing, spacing: 3) {
                 item.supplier.image.padding(2)
                   .background(Color.white)
                   .cornerRadius(3)
-              }.padding(15)
+              }
+              .padding(15)
+              .allowsHitTesting(false)
             }
+            .hoverPoint()
           }.aspectRatio(contentMode: .fill)
         }
       }.frame(maxWidth: .infinity, maxHeight: .infinity)

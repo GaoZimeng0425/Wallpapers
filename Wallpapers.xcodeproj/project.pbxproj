@@ -29,6 +29,7 @@
 		459212FE2A99CCE700C0757E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459212FD2A99CCE700C0757E /* Settings.swift */; };
 		459213042A99EB0300C0757E /* RainbowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459213032A99EB0300C0757E /* RainbowButton.swift */; };
 		459213072A9A30BC00C0757E /* TestUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459213062A9A30BC00C0757E /* TestUIView.swift */; };
+		459962902D69BAB5002250B3 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 4599628F2D69BAB5002250B3 /* LaunchAtLogin */; };
 		459FA6282A9A3C9100F7810A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 459FA6272A9A3C9100F7810A /* Kingfisher */; };
 		459FA62A2A9A6A7200F7810A /* ImageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459FA6292A9A6A7200F7810A /* ImageListView.swift */; };
 		459FA62C2A9B0E9D00F7810A /* TestUIView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459FA62B2A9B0E9D00F7810A /* TestUIView2.swift */; };
@@ -126,6 +127,7 @@
 			files = (
 				459FA6282A9A3C9100F7810A /* Kingfisher in Frameworks */,
 				45BA95CB2AADB7790063BBA9 /* UnifiedBlurHash in Frameworks */,
+				459962902D69BAB5002250B3 /* LaunchAtLogin in Frameworks */,
 				45A0F8722A9F176600012263 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +302,7 @@
 				459FA6272A9A3C9100F7810A /* Kingfisher */,
 				45A0F8712A9F176600012263 /* Alamofire */,
 				45BA95CA2AADB7790063BBA9 /* UnifiedBlurHash */,
+				4599628F2D69BAB5002250B3 /* LaunchAtLogin */,
 			);
 			productName = Wallpapers;
 			productReference = 459212E72A99C18900C0757E /* Wallpapers.app */;
@@ -333,6 +336,7 @@
 				459FA6262A9A3C9100F7810A /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				45A0F8702A9F176600012263 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				45BA95C92AADB7790063BBA9 /* XCRemoteSwiftPackageReference "UnifiedBlurHash" */,
+				4599628E2D69BAB5002250B3 /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */,
 			);
 			productRefGroup = 459212E82A99C18900C0757E /* Products */;
 			projectDirPath = "";
@@ -572,7 +576,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.1.6;
+				MARKETING_VERSION = 0.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaozimeng.Wallpapers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -615,7 +619,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.1.6;
+				MARKETING_VERSION = 0.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaozimeng.Wallpapers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -649,6 +653,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4599628E2D69BAB5002250B3 /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin-Modern";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		459FA6262A9A3C9100F7810A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -676,6 +688,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4599628F2D69BAB5002250B3 /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4599628E2D69BAB5002250B3 /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */;
+			productName = LaunchAtLogin;
+		};
 		459FA6272A9A3C9100F7810A /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 459FA6262A9A3C9100F7810A /* XCRemoteSwiftPackageReference "Kingfisher" */;

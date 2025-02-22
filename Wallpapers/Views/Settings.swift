@@ -6,6 +6,7 @@
 //
 
 import Carbon
+import LaunchAtLogin
 import ServiceManagement
 import SwiftUI
 
@@ -75,7 +76,7 @@ struct SettingsView: View {
 struct PreferencesSettingsView: View {
   @EnvironmentObject var store: Store
   @AppStorage("defaultGeneral") var selection: Int = 1
-  @State private var launchAtLogin = false
+  @State private var autoLogin = LaunchAtLogin.isEnabled
 
   var body: some View {
     ScrollView(showsIndicators: false) {
@@ -86,27 +87,15 @@ struct PreferencesSettingsView: View {
 
         Form {
           VStack(alignment: .leading, spacing: 25) {
-            if #available(macOS 13, *) {
-              HStack {
-                Text("Starup").bold().frame(width: 100, alignment: .trailing)
-                Spacer().frame(width: 30)
-                Toggle("", isOn: $launchAtLogin)
-                  .toggleStyle(.switch)
-                  .scaleEffect(0.7)
-                  .frame(width: 32)
-                  .onChange(of: launchAtLogin) { oldValue, newValue in
-                    debugPrint("\(newValue) - o \(oldValue) - launch at login")
-                    do {
-                      if newValue {
-                        try SMAppService.mainApp.register()
-                      } else {
-                        try SMAppService.mainApp.unregister()
-                      }
-                    } catch {
-                      print("Failed to \(newValue ? "enable" : "disable") launch at login: \(error.localizedDescription)")
-                    }
-                  }
-              }
+            HStack {
+              Text("Startup").bold().frame(width: 100, alignment: .trailing)
+              Spacer().frame(width: 30)
+              Toggle("Launch at Login", isOn: $autoLogin)
+                .toggleStyle(.checkbox)
+                .contentTransition(.identity)
+                .onChange(of: autoLogin) { _, newValue in
+                  LaunchAtLogin.isEnabled = newValue
+                }
             }
             HStack {
               Text("Appearance").bold().padding(0).frame(width: 100, alignment: .trailing).lineLimit(1)
@@ -141,7 +130,7 @@ struct PreferencesSettingsView: View {
               Text("Open Pictrue Directory").bold().padding(0).frame(width: 100, alignment: .trailing).lineLimit(1)
               Spacer().frame(width: 30)
               Button(action: {
-                DownloadService.openDownloadPrctrueDirectroy()
+                DownloadService.openDownloadPictureDirectory()
               }) {
                 Image(systemName: "opticaldiscdrive")
                   .IconStyle()

@@ -284,7 +284,6 @@ enum CivitalAPI {
 
     do {
       let result: CivitalResponse.Result = try await server.get(path: "/tags", parameters: parameters)
-      debugPrint(result)
       return result
     } catch {
       throw error
@@ -303,7 +302,6 @@ enum CivitalAPI {
 
     do {
       let result: CivitalResponse.Result = try await server.get(path: "/models", parameters: parameters)
-      debugPrint(result)
       return result
     } catch {
       throw error

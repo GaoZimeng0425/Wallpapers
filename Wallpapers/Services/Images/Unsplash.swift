@@ -97,7 +97,6 @@ struct UnsplashAPI: API {
 
     do {
       let result: [PhotosRespose] = try await server.get(path: "/topics", parameters: parameters)
-      debugPrint(result)
       return result
     } catch {
       throw error
@@ -108,7 +107,6 @@ struct UnsplashAPI: API {
   static func search(page: Int = 1, query: String?) async throws -> UnsplashResult {
     var parameters: [String: Any] = ["query": query ?? "universe", "page": page, "order_by": "relevant"]
     parameters.merge(DefaultParameters, uniquingKeysWith: { k1, _ in k1 })
-    debugPrint(parameters)
 
     do {
       let result: UnsplashResult = try await Self.server.get(path: "/search/photos", parameters: parameters)

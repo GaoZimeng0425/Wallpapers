@@ -34,7 +34,7 @@ enum Suplier: String {
       case .Civital:
         return Image("Civital").logo(size: 40)
       case .Pexels:
-        return Image("Pexels").logo(size: 22, padding: 5)
+        return Image("Pexels-logo").logo(size: 22, padding: 5)
     }
   }
 }
