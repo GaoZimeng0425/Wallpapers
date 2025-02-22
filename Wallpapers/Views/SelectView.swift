@@ -31,14 +31,12 @@ struct SelectView: View {
 
   private let columns: [GridItem] = Array(repeating: GridItem(.flexible(), spacing: 10), count: 2)
   private var index: Int {
-    return SelectItems.firstIndex(where: { item in
-      item.service == service
-    }) ?? 0
+    SelectItems.firstIndex(where: { $0.service == service }) ?? 0
   }
 
   var body: some View {
     ScrollView(showsIndicators: false) {
-      LazyVGrid(columns: columns, spacing: 10) {
+      LazyVGrid(columns: columns, spacing: 15) {
         ForEach(Array(SelectItems.enumerated()), id: \.offset) { i, item in
           GeometryReader { geo in
             Button(action: {

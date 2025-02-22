@@ -65,19 +65,19 @@ struct ContentView: View {
           if store.service != service { store.service = service }
           withAnimation(.linear(duration: 0.2)) { tabIndex = .gallery }
         })
-        .background(BlurEffectView())
+        .background(VisualEffectView())
         .zIndex(1000)
         .transition(.moveAndFade)
       case .setting:
         SettingsView()
-          .background(BlurEffectView())
+          .background(VisualEffectView())
           .zIndex(1000)
           .transition(.moveAndFade)
       case .gallery:
         EmptyView()
       case .local:
         LocalPictrueListView()
-          .background(BlurEffectView())
+          .background(VisualEffectView())
           .zIndex(1000)
           .transition(.moveAndFade)
       }
