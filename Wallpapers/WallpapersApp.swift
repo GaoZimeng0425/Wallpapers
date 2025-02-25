@@ -56,7 +56,6 @@ struct WallpapersApp: App {
 //      VStack {
 //        Button("Show Fixed Window") {
 //          if let window = NSApp.windows.first(where: { $0.title == "Fixed Menu" }) {
-//            debugPrint("asdfasdf")
 //            window.setIsVisible(false)
 //            window.makeKeyAndOrderFront(nil) // 如果窗口已存在，则激活
 //          } else {

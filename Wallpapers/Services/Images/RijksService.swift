@@ -60,7 +60,7 @@ enum Sort: String {
 }
 
 struct RijksAPI: API {
-  private static let key = "pfBA8zuf"
+  private static let key = Secret.rijks.apiKey
 
   private static let baseURL = "https://www.rijksmuseum.nl/api/\(Culture.en)"
   private static let headers = HTTPHeaders([])
@@ -70,7 +70,7 @@ struct RijksAPI: API {
   static func search(page: Int = 1, query: String?) async throws -> RijksResult {
     let parameters: [String: Any] = [
       "key": key,
-      "involvedMaker": query ?? "Rembrandt van Rijn",
+//      "involvedMaker": query ?? "Rembrandt van Rijn",
       //      "involvedMaker": "Johannes Vermeer",
       "ps": 20,
       "p": page,

@@ -18,6 +18,12 @@ public enum PexelsAPI {
       let photographerId: Int?
       let avgColor: String?
       let src: Src
+      let alt: String?
+      
+      enum CodingKeys: String, CodingKey {
+        case photographerUrl = "photographer_url"
+        case id, width, height, url, photographer, photographerId, avgColor, src, alt
+      }
     }
 
     struct Src: Codable {

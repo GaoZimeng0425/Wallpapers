@@ -75,7 +75,6 @@ struct DownloadService {
   }
 
   static func fileExists(path: URL) -> Bool {
-    debugPrint(path.absoluteString, path.relativeString, path.absoluteURL)
     return FileManager.default.fileExists(atPath: path.absoluteString)
   }
 

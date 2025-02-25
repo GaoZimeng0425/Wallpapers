@@ -29,21 +29,26 @@ struct Random: Codable {
   let description: String?
   let likes: Int
   let location: Location?
+  let links: ImageLinks
 }
 
 struct ImageURL: Codable {
   let raw, full, regular, small, thumb: String
 }
 
-struct User: Codable {
-  let id, username, name: String
-  let portfolio_url, bio, location: String?
-}
-
 struct UserCollections: Codable {
   let id: Int
   let title, published_at, updated_at: String
   let cover_photo, user: String?
+}
+
+struct ImageLinks: Codable {
+  let selfLink, html, download: String
+  enum CodingKeys: String, CodingKey {
+    case selfLink = "self"
+    case html
+    case download
+  }
 }
 
 struct PhotosRespose: Codable {
@@ -56,6 +61,7 @@ struct PhotosRespose: Codable {
   let urls: ImageURL?
   let description: String?
   let likes: Int
+  let links: ImageLinks
 }
 
 struct UnsplashResult: Codable {
@@ -70,7 +76,7 @@ struct Download: Codable {
 private let DefaultParameters: [String: Any] = [
   "per_page": 5,
   "page": 1,
-  "order_by": "latest"
+  "order_by": "latest",
 ]
 
 protocol API {
@@ -128,7 +134,7 @@ struct UnsplashAPI: API {
     }
   }
 
-  static func random(page: Int = 1) async throws -> [Random] {
+  static func random(page _: Int = 1) async throws -> [Random] {
     let parameters: [String: Any] = [
       "collections": "",
       "topics": "",
@@ -136,7 +142,7 @@ struct UnsplashAPI: API {
       "orientation": "landscape", // landscape, portrait, squarish
       "content_filter": "low", // low, high
 //      "query": "universe",
-      "count": "5" // 1 - 30
+      "count": "5", // 1 - 30
     ]
 
     do {
@@ -146,7 +152,7 @@ struct UnsplashAPI: API {
       throw error
     }
   }
-  
+
   static func collections(page: Int) async throws -> [Random] {
     var parameters: [String: Any] = ["id": "16398438", "page": page, "per_page": 5, "orientation": "portrait"] // landscape, portrait, squarish
     parameters.merge(DefaultParameters, uniquingKeysWith: { k1, _ in k1 })
@@ -156,7 +162,6 @@ struct UnsplashAPI: API {
     } catch {
       throw error
     }
-    
   }
 
   static func download(id: String) async throws -> Download {
@@ -166,10 +171,10 @@ struct UnsplashAPI: API {
     //    let response = await dataTask.response // Returns full DataResponse<TestResponse, AFError>
     let result = await dataTask.result // Returns Result<TestResponse, AFError>
     switch result {
-      case .success(let data):
-        return data
-      case .failure(let error):
-        throw error
+    case let .success(data):
+      return data
+    case let .failure(error):
+      throw error
     }
   }
 }

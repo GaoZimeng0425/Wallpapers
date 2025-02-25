@@ -49,7 +49,7 @@ $ sudo xattr -d com.apple.quarantine /Applications/Wallpapers.app
 
 - [Unsplash](https://unsplash.com/documentation#search-photos)
 - [RIJKS Museum](https://data.rijksmuseum.nl/object-metadata/api/)
-- [Art Institute of Chicago](https://www.artic.edu/open-access/public-api)
+- [The Art Institute of Chicago](https://www.artic.edu/open-access/public-api)
 - [Civitai](https://github.com/civitai/civitai/wiki/REST-API-Reference)
 - [NASA](https://api.nasa.gov/)
 - [pexels](https://api.pexels.com/v1/)

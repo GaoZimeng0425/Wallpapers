@@ -10,6 +10,7 @@
 		452F6F302ABD6BD300E9F015 /* Met.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452F6F2F2ABD6BD300E9F015 /* Met.swift */; };
 		452F6F322ABD870F00E9F015 /* met.json in Resources */ = {isa = PBXBuildFile; fileRef = 452F6F312ABD870F00E9F015 /* met.json */; };
 		452F6F342ABD888500E9F015 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 452F6F332ABD888500E9F015 /* README.md */; };
+		4532A5D72D6E27BB00C3F6AE /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4532A5D62D6E27BB00C3F6AE /* String+Ext.swift */; };
 		453A46672AB41AB5008D3136 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453A46662AB41AB5008D3136 /* HttpService.swift */; };
 		453A46692AB4B004008D3136 /* jsonload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453A46682AB4B004008D3136 /* jsonload.swift */; };
 		453A466B2AB4B3BF008D3136 /* SelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453A466A2AB4B3BF008D3136 /* SelectView.swift */; };
@@ -45,7 +46,6 @@
 		45A0F8772A9F95A800012263 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0F8762A9F95A800012263 /* ImageService.swift */; };
 		45A0F87B2AA0407B00012263 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0F87A2AA0407B00012263 /* Download.swift */; };
 		45A0F87D2AA0AA9E00012263 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A0F87C2AA0AA9E00012263 /* Appearance.swift */; };
-		45BA95BC2AAB2AA90063BBA9 /* AutoLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BA95BB2AAB2AA90063BBA9 /* AutoLogin.swift */; };
 		45BA95C02AAB5D2A0063BBA9 /* Pexels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BA95BF2AAB5D2A0063BBA9 /* Pexels.swift */; };
 		45BA95C22AACD6E40063BBA9 /* InfinityScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BA95C12AACD6E40063BBA9 /* InfinityScroll.swift */; };
 		45BA95C42AAD6B7A0063BBA9 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BA95C32AAD6B7A0063BBA9 /* FileService.swift */; };
@@ -68,6 +68,7 @@
 		452F6F2F2ABD6BD300E9F015 /* Met.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Met.swift; sourceTree = "<group>"; };
 		452F6F312ABD870F00E9F015 /* met.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = met.json; sourceTree = "<group>"; };
 		452F6F332ABD888500E9F015 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		4532A5D62D6E27BB00C3F6AE /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		453A46662AB41AB5008D3136 /* HttpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
 		453A46682AB4B004008D3136 /* jsonload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsonload.swift; sourceTree = "<group>"; };
 		453A466A2AB4B3BF008D3136 /* SelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectView.swift; sourceTree = "<group>"; };
@@ -102,7 +103,6 @@
 		45A0F8762A9F95A800012263 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		45A0F87A2AA0407B00012263 /* Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
 		45A0F87C2AA0AA9E00012263 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
-		45BA95BB2AAB2AA90063BBA9 /* AutoLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLogin.swift; sourceTree = "<group>"; };
 		45BA95BF2AAB5D2A0063BBA9 /* Pexels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pexels.swift; sourceTree = "<group>"; };
 		45BA95C12AACD6E40063BBA9 /* InfinityScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfinityScroll.swift; sourceTree = "<group>"; };
 		45BA95C32AAD6B7A0063BBA9 /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
@@ -243,7 +243,6 @@
 				45A0F8762A9F95A800012263 /* ImageService.swift */,
 				45A0F87A2AA0407B00012263 /* Download.swift */,
 				45A0F87C2AA0AA9E00012263 /* Appearance.swift */,
-				45BA95BB2AAB2AA90063BBA9 /* AutoLogin.swift */,
 				45BA95C32AAD6B7A0063BBA9 /* FileService.swift */,
 				453A46662AB41AB5008D3136 /* HttpService.swift */,
 				45C662C32AC3FEA000810E7C /* Pasteboard.swift */,
@@ -270,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				45FE1F232D699244004E4DA9 /* View+Ext.swift */,
+				4532A5D62D6E27BB00C3F6AE /* String+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -368,6 +368,7 @@
 			files = (
 				453BA1462AB055D400095A64 /* Aligment.swift in Sources */,
 				45A0F86D2A9EE80300012263 /* StatusBarMenu.swift in Sources */,
+				4532A5D72D6E27BB00C3F6AE /* String+Ext.swift in Sources */,
 				453BA1482AB098B100095A64 /* TextExtension.swift in Sources */,
 				453A466B2AB4B3BF008D3136 /* SelectView.swift in Sources */,
 				459212ED2A99C18900C0757E /* ContentView.swift in Sources */,
@@ -377,7 +378,6 @@
 				458E5C0E2AB8B52200D19CA7 /* Harvard.swift in Sources */,
 				45BA95D22AAF63270063BBA9 /* NasaService.swift in Sources */,
 				452F6F302ABD6BD300E9F015 /* Met.swift in Sources */,
-				45BA95BC2AAB2AA90063BBA9 /* AutoLogin.swift in Sources */,
 				457C578C2AB01B4E004F867F /* ImageType.swift in Sources */,
 				45A0F87D2AA0AA9E00012263 /* Appearance.swift in Sources */,
 				459FA6372A9CA13500F7810A /* Toolbar.swift in Sources */,
@@ -576,7 +576,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.1.7;
+				MARKETING_VERSION = 0.1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaozimeng.Wallpapers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;
@@ -619,7 +619,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 0.1.7;
+				MARKETING_VERSION = 0.1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gaozimeng.Wallpapers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = NO;

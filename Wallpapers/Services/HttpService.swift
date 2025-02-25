@@ -24,7 +24,6 @@ struct Network {
     if let dictionary = response.response?.headers.dictionary {
       debugPrint("limit: ", dictionary["x-ratelimit-limit"] ?? 0, "remaining: ", dictionary["x-ratelimit-remaining"] ?? 0)
     }
-    //    debugPrint(response.response?.statusCode ?? "")
 
     let result = response.result
     switch result {

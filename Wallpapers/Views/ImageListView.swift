@@ -82,17 +82,33 @@ struct ImageListView: View {
             }
             .overlay(alignment: .bottomLeading) {
               VStack(alignment: .leading, spacing: 5) {
-                if let title = image.title {
-                  HStack {
-                    Text(title)
+                if image.title?.isEmpty == false {
+                  Button {
+                    if let url = URL(string: image.imageLink ?? "") {
+                      NSWorkspace.shared.open(url)
+                    }
+                  } label: {
+                    Text(image.title!)
                       .markerText(isDarkMode: store.isDarkMode)
                       .opacity(0.8)
-                  }.frame(maxWidth: 20 * 10, alignment: .leading)
-                    .clipped()
+                  }
+                  .frame(maxWidth: 20 * 10, alignment: .leading)
+                  .hoverPoint()
+                  .buttonStyle(.plain)
                 }
-                if image.author != "" {
-                  Text("By \(image.author)").bold().markerText(isDarkMode: store.isDarkMode)
-                    .opacity(0.8)
+                if image.author.isEmpty == false {
+                  Button {
+                    if let url = URL(string: image.userLink ?? "") {
+                      NSWorkspace.shared.open(url)
+                    }
+                  } label: {
+                    Text("By \(image.author)")
+                      .bold()
+                      .markerText(isDarkMode: store.isDarkMode)
+                      .opacity(0.8)
+                  }
+                  .hoverPoint()
+                  .buttonStyle(.plain)
                 }
               }
               .offset(x: 20, y: -20)
@@ -107,21 +123,21 @@ struct ImageListView: View {
               }
             }
             .overlay(alignment: .center) {
-              Button(action: {
+              Button {
                 Task {
                   currentImage = image
                   await onSetDesktopButtonClick(image: image)
                   currentImage = nil
                 }
-              }) {
+              } label: {
                 Text("Set Desktop Background")
                   .bold()
                   .plain(padding: [15, 10], font: .system(size: 12))
-//                  .background(store.isDarkMode ? Color.black.opacity(0.6) : Color.white.opacity(0.6))
-                  .background(.ultraThinMaterial.opacity(0.8))
-                  .cornerRadius(10)
+                  .background(.ultraThinMaterial.opacity(0.8), in: .rect(cornerRadius: 10))
                   .opacity(opacity)
-              }.buttonStyle(.borderless)
+              }
+              .hoverPoint()
+              .buttonStyle(.plain)
             }
         }
       }

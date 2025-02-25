@@ -8,6 +8,7 @@
 import Alamofire
 import AppKit
 
+// DEMO: https://github.com/art-institute-of-chicago/api-data/blob/master/json/artworks/23.json
 struct ChicagoResponse {
   // MARK: - Result
 
@@ -33,11 +34,11 @@ struct ChicagoResponse {
   // MARK: - Datum
 
   struct Datum: Codable {
-    let id: Int?
+    let id: Int
     let apiModel: String?
     let apiLink: String?
     let isBoosted: Bool?
-    let title: String?
+    let title: String
     let altTitles: JSONAny?
     let thumbnail: Thumbnail?
     let mainReferenceNumber: String?
@@ -69,7 +70,7 @@ struct ChicagoResponse {
     let artworkTypeTitle: String?
     let artworkTypeId: Int?
     let departmentTitle, departmentId: String?
-    let artistId: Int?
+    let artistId: Int
     let artistTitle: String?
     let altArtistIds: [JSONAny]?
     let artistIds: [Int]?
@@ -279,6 +280,8 @@ struct ChicagoResponse {
 
 // https://www.artic.edu/open-access/public-api
 struct ChicagoAPI: API {
+  typealias SearchType = ChicagoResponse.Result
+
   private static let baseURL = "https://api.artic.edu/api/v1"
   private static let headers = HTTPHeaders([])
   private static let server = Network(baseURL: baseURL, headers: headers)
@@ -291,7 +294,7 @@ struct ChicagoAPI: API {
     "https://www.artic.edu/iiif/2/\(id)/full/full/0/default.jpg"
   }
 
-  static func search(page: Int = 1) async throws -> ChicagoResponse.Result {
+  static func search(page: Int = 1, query: String? = "") async throws -> ChicagoResponse.Result {
     let parameters: [String: Any] = [
       "page": page,
       "limit": 5,
@@ -325,28 +328,6 @@ struct ChicagoAPI: API {
     }
   }
 
-  typealias SearchType = RijksResult
-  static func search(page: Int = 1, query: String?) async throws -> RijksResult {
-    let parameters: [String: Any] = [
-      "key": "pfBA8zuf",
-      "involvedMaker": query ?? "Rembrandt van Rijn",
-      //      "involvedMaker": "Johannes Vermeer",
-      "ps": 20,
-      "p": page,
-      //      "f.normalized32Colors.hex": ""
-      "imgonly": true,
-      "toppieces": true,
-      //      "ondisplay": true,
-      "s": Sort.objecttype
-    ]
-
-    do {
-      let result: RijksResult = try await server.get(path: "/collection", parameters: parameters)
-      return result
-    } catch {
-      throw error
-    }
-  }
 }
 
 extension Encodable {
