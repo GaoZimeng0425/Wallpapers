@@ -72,19 +72,30 @@ public enum wallpaperService {
     return options
   }
 
-  static func setDesktopImage(url: URL) {
-    let workspace = NSWorkspace.shared
-    debugPrint(NSScreen.screens.map { $0.className })
-    guard let screen = NSScreen.main ?? NSScreen.screens.first else { return }
-    guard let options = workspace.desktopImageOptions(for: screen) else {
-      return
+  static func setAllDesktopImage(url: URL, screens: [NSScreen]) {
+    screens.forEach {
+      self.setSingleDesktopImage(url: url, screen: $0)
     }
+  }
 
+  static func setSingleDesktopImage(url: URL, screen: NSScreen?) {
+    let workspace = NSWorkspace.shared
+    guard let screen = screen else { return }
+    guard let options = workspace.desktopImageOptions(for: screen) else { return }
+    
     do {
       try NSWorkspace.shared.setDesktopImageURL(url, for: NSScreen.main ?? NSScreen.screens.first!, options: options)
     } catch let error as NSError {
-      debugPrint("error: \(url)")
-      debugPrint("发生了一个错误：\(error.localizedDescription)")
+      debugPrint("ERROR URL: \(url)")
+      debugPrint("ERROR：\(error.localizedDescription)")
+    }
+  }
+
+  static func setDesktopImage(url: URL, all: Bool? = false) {
+    if let all {
+      setAllDesktopImage(url: url, screens: NSScreen.screens)
+    } else {
+      setSingleDesktopImage(url: url, screen: NSScreen.main)
     }
   }
 }
@@ -134,6 +145,7 @@ enum ImageService {
     }
     downloader.downloadImage(with: url!) { result in
       switch result {
+      // TODO: adjust exetion
       case let .success(value):
         guard let url = value.url else { return }
         let name = url.lastPathComponent

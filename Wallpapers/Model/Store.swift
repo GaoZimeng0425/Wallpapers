@@ -104,8 +104,7 @@ enum ServiceNames: String, CaseIterable {
       case .Random:
         return UnsplashAPI.random
       case .Chicago:
-//        return ChicagoAPI.artworks
-        return ChicagoAPI.search
+        return ChicagoAPI.artworks
       case .Civital:
         return CivitalAPI.images
       case .Met:

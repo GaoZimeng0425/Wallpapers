@@ -206,7 +206,7 @@ enum CivitalResponse {
     let postId: Int?
     let stats: Stats?
     let meta: Meta?
-    let username: String?
+    let username: String
   }
 
   // MARK: - Meta
